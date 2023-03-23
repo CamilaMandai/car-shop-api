@@ -58,6 +58,12 @@ class CarService {
       return { type: 422, message: (error as Error).message };
     }
   }
-}
 
+  public async update(id: string, car: ICar) {
+    const carODM = new CarODM();
+    const result = await carODM.update(id, car);
+    return this.createCarDomain(result);
+  }
+}
+   
 export default CarService;

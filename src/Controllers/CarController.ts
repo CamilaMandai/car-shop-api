@@ -49,6 +49,18 @@ export default class CarController {
     return this.res.status(200).json(result);
   }
 
+  async update() {
+    const { id } = this.req.params;
+    try {
+      const result = await this.service.update(id, this.req.body);
+      if (!result) {
+        return this.res.status(404).json({ message: 'Car not found' });
+      }
+      return this.res.status(200).json(result);
+    } catch (error) {
+      return this.res.status(422).json({ message: (error as Error).message });
+    }
+  }
   // teste() {
   //   return this.res.status(201).json('olá');
   // }

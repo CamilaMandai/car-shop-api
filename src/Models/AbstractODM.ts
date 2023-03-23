@@ -19,7 +19,8 @@ abstract class AbstractODM<T> {
   }
 
   public async create(obj: T): Promise<T> {
-    return this.model.create({ ...obj });
+    const data = await this.model.create({ ...obj });
+    return data;
   }
 
   public async update(_id: string, obj: Partial<T>): Promise<T | null> {
@@ -30,6 +31,12 @@ abstract class AbstractODM<T> {
       { ...obj } as UpdateQuery<T>,
       { new: true },
     );
+  }
+
+  public async findById(id: string): Promise<any | null> {
+    if (!isValidObjectId(id)) throw Error('Invalid Mongo id');
+    const data = await this.model.findById(id);
+    return data;
   }
 }
 

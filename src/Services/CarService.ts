@@ -26,6 +26,38 @@ class CarService {
     const newCar = await carODM.create(car);
     return this.createCarDomain(newCar);
   }
+
+  public async findAll() {
+    const carODM = new CarODM();
+    const allCars = await carODM.findAll();
+    const carList = allCars.map((oneCar) => this.createCarDomain(oneCar));
+    return carList;
+  }
+
+  public async findById(id: string) {
+    const carODM = new CarODM();
+
+    try {
+      const result = await carODM.findById(id);
+      if (!result) {
+        return { type: 404, message: 'Car not found' };
+      }
+      const { model, year, color, status, buyValue, doorsQty, seatsQty } = result;
+      return { 
+        id: result._id,
+        model, 
+        year, 
+        color, 
+        status, 
+        buyValue, 
+        doorsQty, 
+        seatsQty,
+      };
+      // return this.createCarDomain(result);
+    } catch (error) {
+      return { type: 422, message: 'Invalid mongo id' };
+    }
+  }
 }
 
 export default CarService;

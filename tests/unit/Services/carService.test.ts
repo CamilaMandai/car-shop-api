@@ -4,10 +4,11 @@ import { Model } from 'mongoose';
 import Car from '../../../src/Domains/Car';
 import ICar from '../../../src/Interfaces/ICar';
 import CarService from '../../../src/Services/CarService';
+import IVehicle from '../../../src/Interfaces/IVehicle';
 
 describe('Deveria validar e criar carro', function () {
   it('Criando um carro com SUCESSO', async function () {
-    const carInput: ICar = {
+    const carInput: ICar & IVehicle = {
       model: 'Strada', 
       year: 2013, 
       color: 'white', 

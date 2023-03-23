@@ -33,6 +33,11 @@ abstract class AbstractODM<T> {
     );
   }
 
+  public async findAll(): Promise<T[]> {
+    const data = await this.model.find();
+    return data;
+  }
+
   public async findById(id: string): Promise<any | null> {
     if (!isValidObjectId(id)) throw Error('Invalid mongo id');
     const data = await this.model.findById(id);

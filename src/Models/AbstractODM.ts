@@ -34,7 +34,7 @@ abstract class AbstractODM<T> {
   }
 
   public async findById(id: string): Promise<any | null> {
-    if (!isValidObjectId(id)) throw Error('Invalid Mongo id');
+    if (!isValidObjectId(id)) throw Error('Invalid mongo id');
     const data = await this.model.findById(id);
     return data;
   }

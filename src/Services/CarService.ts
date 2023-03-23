@@ -55,7 +55,7 @@ class CarService {
       };
       // return this.createCarDomain(result);
     } catch (error) {
-      return { type: 422, message: 'Invalid mongo id' };
+      return { type: 422, message: (error as Error).message };
     }
   }
 }

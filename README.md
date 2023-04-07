@@ -31,6 +31,6 @@ Você pode rodar a aplicação localmente ou utilizando containers em docker par
 A parte do front end ainda está em construção, mas já é possível visualizar a página que renderiza os carros disponíveis.
 
 A aplicação está sendo desenvolvida utilizando React Hooks. Para iniciar a aplicação, vá para o diretório frontend/carshop e rode os comandos:
-> `npm install`
+> `npm install` <br>
 > `npm start`
 
